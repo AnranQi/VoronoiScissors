@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Rags2Riches: Computational Garment Reuse">
+    <meta name="keywords" content="Garment design, upcycling, reuse, sustainable design, circular design">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rags2Riches: Computational Garment Reuse</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+    rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/bulma.min.css">
+    <link rel="stylesheet" href="./resources/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./resources/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./resources/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./resources/css/index.css">
+    <link rel="icon" href="./resources/imgs/icon.jpg">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./resources/js/fontawesome.all.min.js"></script>
+    <script src="./resources/js/bulma-carousel.min.js"></script>
+    <script src="./resources/js/bulma-slider.min.js"></script>
+    <script src="./resources/js/index.js"></script>
+</head>
+
+<body>
+
+
+    <!-- Title, authors -->
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <h1 class="title is-1 publication-title">Rags2Riches:<br>Computational Garment Reuse</h1>
+                <h3 class="title is-4" style="color: #555555">SIGGRAPH 2025 - Conference paper</h3>
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                    <a href="https://anranqi.github.io/" target="_blank">Anran Qi</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://www.nicopietroni.com/" target="_blank">Nico Pietroni</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://korosteleva.com/" target="_blank">Maria Korosteleva</a><sup>3,4</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://igl.ethz.ch/people/sorkine/" target="_blank">Olga Sorkine-Hornung</a><sup>3</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://www-sop.inria.fr/members/Adrien.Bousseau/" target="_blank">Adrien Bousseau</a><sup>1</sup>
+                  </span>
+                </div>
+      
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block"><sup>1</sup>Centre Inria d’Université Côte d’Azur,</span>
+                  <span class="author-block"><sup>2</sup>University of Technology Sydney,</span>
+                  <span class="author-block"><sup>3</sup>ETH Zurich,</span> <br>
+                  <span class="author-block"><sup>4</sup>Meshcapade</span>
+                </div>
+      
+                <div class="column has-text-centered">
+                  <div class="publication-links">
+                    <!-- PDF Link. -->
+                    <span class="link-block">
+                      <a href="https://anranqi.github.io/img/rags2riches_author_compress.pdf"
+                         class="external-link button is-normal is-rounded is-dark" target="_blank">
+                        <span class="icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+                    <!-- Video Link. -->
+                    <span class="link-block">
+                      <a href="https://www.youtube.com/watch?v=83Fnvj2H0_g"
+                         class="external-link button is-normal is-rounded is-dark" target="_blank">
+                        <span class="icon">
+                            <i class="fab fa-youtube"></i>
+                        </span>
+                        <span>Video (coming soon)</span>
+                      </a>
+                    </span>
+                    <!-- Code Link. -->
+                    <span class="link-block">
+                      <a href="https://github.com/AnranQi/Rags2riches" target="_blank"
+                         class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                        </a>
+                    </span>
+
+                   <span class="link-block">
+                      <a href="https://anranqi.github.io/img/Rags2Riches_sup_author.pdf" target="_blank"
+                         class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <i class="fas fa-folder"></i>
+                        </span>
+                        <span>Suppl.</span>
+                      </a>
+                    </span>
+
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <!-- Teaser -->
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+            <img src="./resources/imgs/teaser.png" class="teaser" alt="Teaser Image"/>
+            <h3 class="subtitle has-text-justified">
+                We present a computational pipeline to convert an existing garment (a, source) into a new garment (b, target). Given the sewing patterns of both
+                garments, our algorithm solves for placement of the target panels over the source garment (c) such that structural components of the existing garment are
+                reused (seams, hems). In this example, the central seams of the front and back of the pullover are reused to form the body and hood of the dog’s coat (1,2,3).
+            </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Results -->
+    <section class="hero is-light is-small"> 
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-bike">
+                <video poster="" id="bike" autoplay controls muted loop playsinline height="100%">
+                  <source src="./resources/videos/top2dogcoat.mov"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-frog">
+                <video poster="" id="frog" autoplay controls muted loop playsinline height="100%">
+                  <source src="./resources/videos/pant2bag.mov"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-ship">
+                <video poster="" id="ship" autoplay controls muted loop playsinline height="100%">
+                  <source src="./resources/videos/dress2top.mov"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Abstract and Paper Video
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                        We present the first algorithm to automatically compute sewing patterns for
+                        upcycling existing garments into new designs. Our algorithm takes as input
+                        two garment designs along with their corresponding sewing patterns and
+                        determines how to cut one of them to match the other by following garment
+                        reuse principles. Specifically, our algorithm favors the reuse of seams and
+                        hems present in the existing garment, thereby preserving the embedded
+                        value of these structural components and simplifying the fabrication of the
+                        new garment. Finding optimal reused pattern is computationally challenging
+                        because it involves both discrete and continuous quantities. Discrete
+                        decisions include the choice of existing panels to cut from and the choice of
+                        seams and hems to reuse. Continuous variables include the precise placement
+                        of the new panels along seams and hems, and potential deformations
+                        of these panels to maximize reuse. Our key idea for making this optimization
+                        tractable is quantizing the shape of garment panels. This allows us to
+                        frame the search for an optimal reused pattern as a discrete assignment
+                        problem, which we solve efficiently with an ILP solver. We showcase our
+                        proposed pipeline on several reuse examples, including comparisons with
+                        reused patterns crafted by a professional garment designer. Additionally,
+                        we manufacture a physical reused garment to demonstrate the practical
+                        effectiveness of our approach.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            Abstract. -->
+
+            <!-- Paper video.
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                  <h2 class="title is-3">Video (Trailer)
+                  </h2>
+                  <div class="publication-video">
+                  <iframe src="https://www.youtube.com/embed/x8r9DqUIN-U?si=0uCL-f_n8rV7nL_M;showinfo=0"
+                          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+              </div>
+              </div>
+
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                  <h2 class="title is-3">Video (Long Presentation)</h2>
+                  <div class="publication-video">
+                  <iframe src="https://www.youtube.com/embed/83Fnvj2H0_g?si=J26dhBGGhC8ES_o_;showinfo=0"
+                          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+              </div>
+              </div>
+             / Paper video. -->
+        </div>
+    </section>
+
+    <!-- Motivation -->
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Overview -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3 has-text-centered">Motivation</h2>
+                    <img src="./resources/imgs/motivation.png" class="" alt="Motivation Image"/>
+                    <div class="content has-text-justified">
+                        <p>
+                            Multiple solutions often exist to reuse a garment. When possible, designers seek to reuse seams and hems (b) to reduce fabrication cost and preserve
+                            high-quality finish (insets). A seam in the target can also be avoided if the two panels to be sewed can be cut as a single panel in the source (c). Ignoring these
+                            principles results in additional work (d), as each panel needs to be cut and sewed with the others. We created these examples by hand for illustration purpose.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Overview -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3 has-text-centered">Method</h2>
+                    <img src="./resources/imgs/method.png" class="" alt="Method Image"/>
+                    <div class="content has-text-justified">
+                        <p>
+                            Our method takes as input the sewing patterns of source (a) and target (b) garments. We first quantize all panels of the two garments into polyominoes
+                            (c). This approximation allows us to generate candidate placements of target panels by sliding them over the source in discrete steps (d, only a few candidates
+                            are shown). We then select one candidate for each target panel by solving an assignment problem that balances panel deformation with the reuse of seams
+                            and hems (e). In this example, our algorithm finds a configuration where the outer seam of the pants is reused to form the central seams of the top (f - 1,2),
+                            and the bottom hem is reused to form the hem of the back (f - 3,4).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Results -->
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Overview -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3 has-text-centered">Result Gallery</h2>
+                    <img src="./resources/imgs/results.png" class="" alt="Results Gallery"/>
+                    <img src="./resources/imgs/our_designer_results.png" class="" alt="Results Gallery"/>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>Results on diverse garments. In each case, we show the 3D models of the source and target, the reused pattern produced by our method (red dashed curves delimit the target panels, black curves delimit our optimized panels), and the resulting 3D garment.We highlight reused seams and hems with numbers.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+        <!-- Results -->
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Overview -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3 has-text-centered">User control</h2>
+                    <img src="./resources/imgs/user_control.png" class="" alt="User Control"/>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b> Our formulation readily accommodates additional user preferences. As illustrated: (a) the user can forbid reuse of a specific panel (marked with a
+                                forbidden sign); (b) prefer reuse of selected seam segments (highlighted in green); and (c) apply an additional fragmentation cost to concentrate reuse on
+                                fewer panels.
+                        </p>
+                    </div>
+
+                    <div class="item item-bike">
+                        <video poster="" id="bike" autoplay controls muted loop playsinline height="100%">
+                          <source src="./resources/videos/skirt2hat.mov"
+                                  type="video/mp4">
+                        </video>
+                         <figcaption class="has-text-centered mt-2">
+                            By adjusting 𝜆_Deform, users can control the trade-off between reuse of structural elements and deviation from the target.
+                        </figcaption>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">BibTeX</h2>
+          <pre><code>@inproceedings{Qi2025rags2riches,
+            title={Rags2Riches: Computational Garment Reuse},
+            author={QI, ANRAN and PIETRONI, NICO and KOROSTELEVA, MARIA and SORKINE-HORNUNG, OLGA and BOUSSEAU, ADRIEN},
+            booktitle={SIGGRAPH 2025 Conference Paper},
+            pages={},
+            year={2025}
+          }          
+          </code></pre>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <h2 class="title">Acknowlegement</h2>
+                <p style="font-size:120%;">
+                  We thank the anonymous reviewers for their valuable feedback. We
+                    also thank Glwadys Milong for making our physical prototype. This
+                    work was supported in part by the ERC Consolidator Grant No.
+                    101003104 (MYCLOTH) and the PHC FASIC 2025 program, project
+                    53593QK.
+                </p>
+                <p>
+                    We borrow the source code of this website from  <a
+                    href="https://nerfies.github.io/" target="_blank">Nerfies</a>. Last update: May 2025.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+
+</body>
+</html>
