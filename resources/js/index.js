@@ -1,78 +1,57 @@
-window.HELP_IMPROVE_VIDEOJS = false;
-
-var INTERP_BASE = "./static/interpolation/stacked";
-var NUM_INTERP_FRAMES = 240;
-
-var interp_images = [];
-function preloadInterpolationImages() {
-  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-    var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-    interp_images[i] = new Image();
-    interp_images[i].src = path;
+document.addEventListener('DOMContentLoaded', () => {
+  // Progressive reveal. Content remains fully visible when JS is unavailable via the fallback below.
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealItems = document.querySelectorAll('.reveal');
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    revealItems.forEach(el => observer.observe(el));
   }
-}
 
-function setInterpolationImage(i) {
-  var image = interp_images[i];
-  image.ondragstart = function() { return false; };
-  image.oncontextmenu = function() { return false; };
-  $('#interpolation-image-wrapper').empty().append(image);
-}
-
-
-$(document).ready(function() {
-    // Check for click events on the navbar burger icon
-    $(".navbar-burger").click(function() {
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      $(".navbar-burger").toggleClass("is-active");
-      $(".navbar-menu").toggleClass("is-active");
-
+  // One-click BibTeX copy.
+  const copyButton = document.getElementById('copy-bibtex');
+  const bibtexCode = document.getElementById('bibtex-code');
+  if (copyButton && bibtexCode) {
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(bibtexCode.textContent.trim());
+        const label = copyButton.querySelector('span');
+        label.textContent = 'Copied';
+        setTimeout(() => { label.textContent = 'Copy'; }, 1600);
+      } catch (_) {
+        // Clipboard APIs may be disabled on local file previews.
+      }
     });
+  }
 
-    var options = {
-			slidesToScroll: 1,
-			slidesToShow: 2,
-			loop: true,
-			infinite: true,
-			autoplay: false,
-			autoplaySpeed: 3000,
-    }
-
-		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
-
-    // Loop on each carousel initialized
-    for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
-    }
-
-    // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
-    if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
-    }
-
-    /*var player = document.getElementById('interpolation-video');
-    player.addEventListener('loadedmetadata', function() {
-      $('#interpolation-slider').on('input', function(event) {
-        console.log(this.value, player.duration);
-        player.currentTime = player.duration / 100 * this.value;
-      })
-    }, false);*/
-    preloadInterpolationImages();
-
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
+  // Click any primary figure to inspect it at full resolution.
+  const dialog = document.getElementById('image-dialog');
+  const dialogImage = dialog ? dialog.querySelector('img') : null;
+  const closeButton = dialog ? dialog.querySelector('.dialog-close') : null;
+  if (dialog && dialogImage && typeof dialog.showModal === 'function') {
+    document.querySelectorAll('.zoomable img').forEach(img => {
+      img.closest('.zoomable').addEventListener('click', () => {
+        dialogImage.src = img.src;
+        dialogImage.alt = img.alt;
+        dialog.showModal();
+      });
     });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
+    closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+});
 
-    bulmaSlider.attach();
-
-})
+// If deferred JS fails before DOMContentLoaded handling, do not leave content hidden forever.
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible')), 800);
+});
