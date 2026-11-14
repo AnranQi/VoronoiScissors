@@ -37,14 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const dialogImage = dialog ? dialog.querySelector('img') : null;
   const closeButton = dialog ? dialog.querySelector('.dialog-close') : null;
   if (dialog && dialogImage && typeof dialog.showModal === 'function') {
+    let lastFigure = null;
     document.querySelectorAll('.zoomable img').forEach(img => {
-      img.closest('.zoomable').addEventListener('click', () => {
+      const frame = img.closest('.zoomable');
+      frame.tabIndex = 0;
+      frame.setAttribute('role', 'button');
+      frame.setAttribute('aria-label', img.alt);
+      frame.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); frame.click(); }
+      });
+      frame.addEventListener('click', () => {
+        lastFigure = frame;
         dialogImage.src = img.src;
         dialogImage.alt = img.alt;
         dialog.showModal();
       });
     });
     closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => lastFigure?.focus());
     dialog.addEventListener('click', event => {
       if (event.target === dialog) dialog.close();
     });
