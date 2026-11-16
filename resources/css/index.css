@@ -10,3 +10,7 @@
 /* Preserve the paired results and their left/right caption on every screen size. */
 .topology-animations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:center}.topology-animations object{width:100%;height:clamp(180px,32vw,400px);object-fit:contain}
 @media(max-width:760px){.topology-animations{gap:12px}}
+
+/* Keep each original input beside its animated dissection. */
+.topology-example{display:grid;grid-template-columns:minmax(64px,.28fr) minmax(0,1fr);gap:16px;align-items:center;min-width:0}.media-frame .topology-input{width:100%;height:auto}
+@media(max-width:760px){.topology-example{grid-template-columns:minmax(0,1fr);gap:12px}.media-frame .topology-input{width:auto;height:105px;max-width:100%;margin-inline:auto}}
